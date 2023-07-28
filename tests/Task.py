@@ -7,33 +7,19 @@ class Task:
         pass
 
     def case(self, raw_read):
-        number = raw_read.split('\n')[1].split(' ')
+        numbers = raw_read.split(' ')
+        result = ""
 
-        summary = 0
-        multiplication = 1
+        a = int(numbers[0])
+        b = int(numbers[1])
+        c = int(numbers[2])
+        d = int(numbers[3])
 
-        for i in range(len(number)):
-            number[i] = int(number[i])
-            if number[i] > 0:
-                summary += number[i]
+        for i in range(-100, 101):
 
-        maximum = number[0]
-        minimum = number[0]
+            if a * (i * i * i) + b * (i * i) + c * i + d == 0:
+                result += str(i) + " "
 
-        maximum_index = 0
-        minimum_index = 0
+        result = result.strip()
 
-        for i in range(len(number)):
-
-            if number[i] > maximum:
-                maximum = number[i]
-                maximum_index = i
-
-            if number[i] < minimum:
-                minimum = number[i]
-                minimum_index = i
-
-        for i in range(min(maximum_index, minimum_index) + 1, max(maximum_index, minimum_index)):
-            multiplication *= number[i]
-
-        return summary, multiplication
+        return result
